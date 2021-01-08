@@ -1,10 +1,10 @@
 package tnsi.tp;
 
 public class Link {
-    public int id;
-    public char constraint;             // > < =
-    public int summit1;
-    public int summit2;
+    private int id;
+    private char constraint;             // > < = <= =>
+    private int summit1;
+    private int summit2;
 
     public Link(int id, char constraint, int summit1, int summit2) {
         this.id = id;

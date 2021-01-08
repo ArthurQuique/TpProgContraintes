@@ -1,12 +1,12 @@
 package tnsi.tp;
 
 public class Summit {
-    public int id;
-    public int value;       //Valeur de l'objet
-    public int min;         //Borne inférieure du domaine de définition
-    public int max;         //Borne supérieure du domaine de définition
-    public int link1;
-    public int link2;
+    private int id;
+    private int value;       //Valeur de l'objet
+    private int min;         //Borne inférieure du domaine de définition
+    private int max;         //Borne supérieure du domaine de définition
+    private int link1;
+    private int link2;
 
     public Summit(int id, int value, int min, int max, int link1, int link2) {
         this.id = id;
