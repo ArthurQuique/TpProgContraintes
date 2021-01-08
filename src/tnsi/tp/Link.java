@@ -1,12 +1,12 @@
 package tnsi.tp;
 
-public class Arc {
+public class Link {
     public int id;
     public char constraint;             // > < =
     public int summit1;
     public int summit2;
 
-    public Arc(int id, char constraint, int summit1, int summit2) {
+    public Link(int id, char constraint, int summit1, int summit2) {
         this.id = id;
         this.constraint = constraint;
         this.summit1 = summit1;

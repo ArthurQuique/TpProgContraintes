@@ -5,16 +5,16 @@ public class Summit {
     public int value;       //Valeur de l'objet
     public int min;         //Borne inférieure du domaine de définition
     public int max;         //Borne supérieure du domaine de définition
-    public int arc1;
-    public int arc2;
+    public int link1;
+    public int link2;
 
-    public Summit(int id, int value, int min, int max, int arc1, int arc2) {
+    public Summit(int id, int value, int min, int max, int link1, int link2) {
         this.id = id;
         this.value = value;
         this.min = min;
         this.max = max;
-        this.arc1 = arc1;
-        this.arc2 = arc2;
+        this.link1 = link1;
+        this.link2 = link2;
     }
 
     public int getId() {
@@ -49,20 +49,20 @@ public class Summit {
         this.max = max;
     }
 
-    public int getArc1() {
-        return arc1;
+    public int getlink1() {
+        return link1;
     }
 
-    public void setArc1(int arc1) {
-        this.arc1 = arc1;
+    public void setlink1(int link1) {
+        this.link1 = link1;
     }
 
-    public int getArc2() {
-        return arc2;
+    public int getlink2() {
+        return link2;
     }
 
-    public void setArc2(int arc2) {
-        this.arc2 = arc2;
+    public void setlink2(int link2) {
+        this.link2 = link2;
     }
 
 }
