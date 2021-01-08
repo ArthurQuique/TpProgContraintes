@@ -9,7 +9,7 @@ public class CSP {
 
     private int nbV = 4;
     private int taille = 5;
-    private double densite = 0.5;
+    private double densite = 1;
     private double durete = 1;
 
 
@@ -18,10 +18,11 @@ public class CSP {
         for (int i = 0; i < this.nbV; i++) {
             this.summits.add(new Summit(i+1, this.taille));
         }
-        int nbLinks = (int) (Math.ceil(this.nbV * this.densite));
+        int nbLinks = (int) (Math.ceil((this.nbV * (this.nbV - 1)) / 2 * this.densite));
         this.links = new ArrayList<>();
         for (int j = 0; j < nbLinks; j++) {
-            this.links.add(new Link(j, this.summits));
+            this.links.add(new Link(j+1, this.summits));
+            System.out.println(this.links.get(j).toString());
         }
     }
 

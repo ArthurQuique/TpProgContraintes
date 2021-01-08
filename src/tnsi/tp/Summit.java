@@ -10,7 +10,7 @@ public class Summit {
         this.id = id;
         this.min = 1;
         this.max = taille;
-        this.value = (int) (Math.random() * ((max + 1) - min) + 1);
+        this.value = 0;
     }
 
     public int getId() {
