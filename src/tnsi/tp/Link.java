@@ -1,16 +1,15 @@
 package tnsi.tp;
 
+import java.util.List;
+
 public class Link {
     private int id;
     private char constraint;             // > < = <= =>
     private int summit1;
     private int summit2;
 
-    public Link(int id, char constraint, int summit1, int summit2) {
+    public Link(int id, List<Summit> summits) {
         this.id = id;
-        this.constraint = constraint;
-        this.summit1 = summit1;
-        this.summit2 = summit2;
     }
 
     public int getId() {

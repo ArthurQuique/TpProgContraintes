@@ -1,14 +1,28 @@
 package tnsi.tp;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CSP {
     private List<Summit> summits;
     private List<Link> links;
 
-    public CSP(List<Summit> summits, List<Link> links) {
-        this.summits = summits;
-        this.links = links;
+    private int nbV = 4;
+    private int taille = 5;
+    private double densite = 0.5;
+    private double durete = 1;
+
+
+    public CSP() {
+        this.summits = new ArrayList<>();
+        for (int i = 0; i < this.nbV; i++) {
+            this.summits.add(new Summit(i+1, this.taille));
+        }
+        int nbLinks = (int) (Math.ceil(this.nbV * this.densite));
+        this.links = new ArrayList<>();
+        for (int j = 0; j < nbLinks; j++) {
+            this.links.add(new Link(j, this.summits));
+        }
     }
 
     public List<Summit> getSummits() {

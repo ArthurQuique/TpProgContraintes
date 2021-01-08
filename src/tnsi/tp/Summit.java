@@ -5,16 +5,12 @@ public class Summit {
     private int value;       //Valeur de l'objet
     private int min;         //Borne inférieure du domaine de définition
     private int max;         //Borne supérieure du domaine de définition
-    private int link1;
-    private int link2;
 
-    public Summit(int id, int value, int min, int max, int link1, int link2) {
+    public Summit(int id, int taille) {
         this.id = id;
-        this.value = value;
-        this.min = min;
-        this.max = max;
-        this.link1 = link1;
-        this.link2 = link2;
+        this.min = 1;
+        this.max = taille;
+        this.value = (int) (Math.random() * ((max + 1) - min) + 1);
     }
 
     public int getId() {
@@ -49,22 +45,15 @@ public class Summit {
         this.max = max;
     }
 
-    public int getlink1() {
-        return link1;
+    @Override
+    public String toString() {
+        return "Summit{" +
+                "id=" + id +
+                ", value=" + value +
+                ", min=" + min +
+                ", max=" + max +
+                '}';
     }
-
-    public void setlink1(int link1) {
-        this.link1 = link1;
-    }
-
-    public int getlink2() {
-        return link2;
-    }
-
-    public void setlink2(int link2) {
-        this.link2 = link2;
-    }
-
 }
 
 
