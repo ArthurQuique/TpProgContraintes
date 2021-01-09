@@ -1,25 +1,20 @@
 package tnsi.tp;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Link {
     private int id;
     private String constraint;             // > < = <= =>
-    private Summit summit1;
-    private Summit summit2;
+    private int summit1;
+    private int summit2;
     private String[] constraintTab = {">", "<", "=", "<=", ">="};
 
-    public Link(int id, List<Summit> summits) {
+    public Link(int id, int summit1, int summit2) {
         this.id = id;
         this.constraint = constraintTab[(int) (Math.random() * constraintTab.length)];
-        List<Summit> newSummits = new ArrayList<>(summits);
-        int index = (int) (Math.random() * newSummits.size());
-        this.summit1 = newSummits.get(index);
-        newSummits.remove(index);
-        index = (int) (Math.random() * newSummits.size());
-        this.summit2 = newSummits.get(index);
+        this.summit1 = summit1;
+        this.summit2 = summit2;
     }
 
     public int getId() {
@@ -38,19 +33,19 @@ public class Link {
         this.constraint = constraint;
     }
 
-    public Summit getSummit1() {
+    public int getSummit1() {
         return summit1;
     }
 
-    public void setSummit1(Summit summit1) {
+    public void setSummit1(int summit1) {
         this.summit1 = summit1;
     }
 
-    public Summit getSummit2() {
+    public int getSummit2() {
         return summit2;
     }
 
-    public void setSummit2(Summit summit2) {
+    public void setSummit2(int summit2) {
         this.summit2 = summit2;
     }
 
