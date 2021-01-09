@@ -11,7 +11,7 @@ public class CSP {
 
     private int nbV = 4; //Nombre de variables
     private int taille = 5; //Taille du domaine
-    private double densite = 0.5; //Densité du csp
+    private double densite = 1; //Densité du csp
     private double durete = 1; //Dureté des contraintes
 
     /**
@@ -39,14 +39,14 @@ public class CSP {
     }
 
 /*
-    public void backjumping(CSP csp, int ancI){
+    public void backjumping(int ancI){
         //calculer anc(Vi) pour chaque variable Vi
         Boolean OK;
         int i = 1;
-        int dMin = csp.summits.get(i).getMin();
-        int dMax = csp.summits.get(i).getMax();
+        int dMin = this.summits.get(i).getMin();
+        int dMax = this.summits.get(i).getMax();
         //Ii <- anc(Vi)         ???
-        while (1 <= i && i <= csp.summits.size()){
+        while (1 <= i && i <= this.summits.size()){
             int x = dMin + (int)(Math.random() * (dMax - dMin +1));
             OK = false;
             while(OK == false && (dMax-dMin) != 0) {
@@ -57,67 +57,71 @@ public class CSP {
                 }
             }
             if (OK != false){
-                backjumping(csp); //(csp, ???)
+                backjumping(); //(csp, ???)
                 //iprev <- i ; i <- le plus haut dans Ii ; Ii <- Ii u iprev - {Vi}
             }
             else {
                 //i <- i + 1; Di* <- i D ; Ii <- anc(Vi)
             }
             if(i == 0)
-                return UNSAT; ?? //Absence de solution ; null ? -1 ?
+                System.out.println("Pas de solution.");
             else
-                return assignation courante; ?? //Solution ; i ?
-        }
-    }*/
-
-    /*
-   public void forwardChecking(CSP csp){
-       List<Summit> dom = csp.getSummits();
-       int i = 1;
-
-       int n = dom.size();
-       boolean emptyDomain = false;
-       boolean ok;
-       while (1 <= i && i <= dom.size()){
-           int dMax = dom.get(i).getMax();
-           int dMin = dom.get(i).getMin();
-           List<Integer> domain = dom.get(i).getDomain();
-           List<Integer> domainSave = domain;
-           ok = false;
-
-           while (!ok && domain.size() != 0){
-               int x = dMin + (int)(Math.random() * (dMax - dMin +1));
-               domainSave = domain;
-               while(domain.contains(x))
-                   domain.remove(x);
-               for(int k = i+1; k<=n; k++){
-                   revise(k,i,csp);
-                   if(dom.get(k) == null) emptyDomain = true;
-               }
-               if (emptyDomain) domain = domainSave;
-               else ok = true;
-           }
-           if(!ok){
-               domain = domainSave;
-               i--;
-           }
-           else i++;
-       }
-       System.out.println(this.summits);
-   }
-
-    public void revise(int m, int n, CSP csp){
-       int a;
-       int b = 0;
-        for(a = m; a <= n;a++){
-            if(///){
-
-                System.out.println("Le problème est inconsistant.");
-            }
-            b++;
+                System.out.println(this.summits);
         }
     }
 */
+/*
+    public void forwardChecking() {
+
+        int i = 1;
+        int[] domain = domain(this.summits.get(0));
+        List<Integer> newDomain = Arrays.stream(domain).boxed().collect(Collectors.toList());
+        while (1 <= i && i <= this.nbV) {
+            boolean ok = false;
+            while(!ok && newDomain.size() > 0) {
+                this.summits.get(i-1).affectToValue();
+                this.summits.get(i-1).remove();
+                boolean emptyDomain = false;
+                for(int k = i; k <= this.nbV; k++) {
+                    revise(k,i);
+                    if(this.summits.get(k-1).getDomain().size() == 0) emptyDomain = true;
+                }
+                if(emptyDomain) {
+                    for(int k = i; k <= this.nbV; k++) {
+                        this.summits.get(k-1).setDomain(Arrays.stream(domain).boxed().collect(Collectors.toList()));
+                    }
+                }
+                else ok = true;
+            }
+            if(!ok) {
+                this.summits.get(i - 1).setDomain(Arrays.stream(domain).boxed().collect(Collectors.toList()));
+                this.summits.get(i - 1).setValue(0);
+                i--;
+            }
+            else {
+                i++;
+            }
+        }
+        if (i==0) System.out.println("Résultat non trouvé");
+        System.out.println(this.summits);
+    }
+
+    public void revise(int m, int n) {
+        Link linkToWatch = null;
+        for(Link l : this.links) {
+            if(l.getSummit1() == n && l.getSummit2() == m) {
+                linkToWatch = l;
+            }
+        }
+        if(linkToWatch != null) {
+            for(int i = 1; i <= this.summits.get(m-1).getMax(); i++) {
+                this.summits.get(m-1).affectToValue();
+                if(!linkToWatch.constraintRespected(summits)) {
+                    this.summits.get(m-1).remove();
+                }
+            }
+        }
+    }*/
 
     /**
      * Regarde si toutes les contraintes sont respectées
