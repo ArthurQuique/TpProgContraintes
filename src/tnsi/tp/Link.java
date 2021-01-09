@@ -17,6 +17,40 @@ public class Link {
         this.summit2 = summit2;
     }
 
+    /**
+     * Retourne si la contrainte est respectée
+     * @param summits
+     * @return
+     */
+    public boolean constraintRespected(List<Summit> summits) {
+        int value1 = summits.get(summit1-1).getValue();
+        int value2 = summits.get(summit2-1).getValue();
+        boolean result = true;
+        if(value1 != 0 && value2 != 0) {
+            switch (constraint) {
+                case ">":
+                    result = (value1 > value2);
+                    break;
+                case "<":
+                    result = (value1 < value2);
+                    break;
+                case "=" :
+                    result = (value1 == value2);
+                    break;
+                case ">=":
+                    result = (value1 >= value2);
+                    break;
+                case "<=":
+                    result = (value1 <= value2);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        return result;
+    }
+
     public int getId() {
         return id;
     }
@@ -51,12 +85,7 @@ public class Link {
 
     @Override
     public String toString() {
-        return "Link{" +
-                "id=" + id +
-                ", constraint='" + constraint + '\'' +
-                ", summit1=" + summit1 +
-                ", summit2=" + summit2 +
-                '}';
+        return "Contrainte " + id + " : V" + summit1 + " " + constraint + " V" + summit2;
     }
 }
 
